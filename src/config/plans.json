@@ -1,0 +1,64 @@
+{
+  "free": {
+    "name": "Free",
+    "description": "Basic access to the platform",
+    "price": 0,
+    "stripePriceId": null,
+    "features": {
+      "projects": 3,
+      "templates": 5,
+      "ai_generation": false,
+      "export_formats": ["png"],
+      "team_members": 1
+    }
+  },
+  "pro": {
+    "name": "Pro",
+    "description": "Professional features for individuals",
+    "price": 19,
+    "stripePriceId": "price_placeholder_pro",
+    "interval": "month",
+    "features": {
+      "projects": 20,
+      "templates": "unlimited",
+      "ai_generation": true,
+      "export_formats": ["png", "svg", "figma"],
+      "team_members": 1
+    }
+  },
+  "team": {
+    "name": "Team",
+    "description": "Collaborative features for teams",
+    "price": 49,
+    "stripePriceId": "price_placeholder_team",
+    "interval": "month",
+    "features": {
+      "projects": "unlimited",
+      "templates": "unlimited",
+      "ai_generation": true,
+      "export_formats": ["png", "svg", "figma", "sketch"],
+      "team_members": 5,
+      "team_permissions": true,
+      "priority_support": true
+    }
+  },
+  "enterprise": {
+    "name": "Enterprise",
+    "description": "Custom solutions for large organizations",
+    "price": 199,
+    "stripePriceId": "price_placeholder_enterprise",
+    "interval": "month",
+    "features": {
+      "projects": "unlimited",
+      "templates": "unlimited",
+      "ai_generation": true,
+      "export_formats": ["png", "svg", "figma", "sketch", "xd"],
+      "team_members": "unlimited",
+      "team_permissions": true,
+      "priority_support": true,
+      "dedicated_account": true,
+      "custom_branding": true,
+      "sso": true
+    }
+  }
+}
