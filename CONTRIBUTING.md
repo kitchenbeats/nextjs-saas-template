@@ -1,4 +1,4 @@
-# Contributing to Streaming App Base Template
+# Contributing to Next.js SaaS Template
 
 Thank you for your interest in contributing! This document provides guidelines for contributing to this Next.js base template.
 
@@ -15,8 +15,8 @@ Thank you for your interest in contributing! This document provides guidelines f
 1. Fork the repository
 2. Clone your fork:
    ```bash
-   git clone https://github.com/your-username/streaming-app.git
-   cd streaming-app
+   git clone https://github.com/your-username/nextjs-saas-template.git
+   cd nextjs-saas-template
    ```
 3. Install dependencies:
    ```bash

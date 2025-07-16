@@ -1,4 +1,4 @@
-# Streaming App Base Template
+# Next.js SaaS Template
 
 A production-ready Next.js 15 application template with Supabase authentication, Stripe subscriptions, comprehensive testing, and developer tools.
 
