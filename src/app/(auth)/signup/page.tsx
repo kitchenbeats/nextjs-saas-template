@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { login, signup } from './actions';
+import { signup } from '../login/actions';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sign In',
-  description: 'Sign in to your account or create a new one',
+  title: 'Sign Up',
+  description: 'Create your account to get started',
 };
 
-export default function LoginPage() {
+export default function SignupPage() {
   return (
     <div className="flex min-h-screen">
       {/* Left section - Image */}
@@ -35,18 +35,16 @@ export default function LoginPage() {
 
           <div className="max-w-md text-white">
             <blockquote className="mb-4 text-xl font-light italic">
-              &ldquo;The AI-powered platform made building my application easy
-              and enjoyable. I deployed in a weekend!&rdquo;
+              &ldquo;Getting started was incredibly easy. The platform guided me
+              through everything step by step.&rdquo;
             </blockquote>
             <div className="flex items-center">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 font-medium text-white">
-                JS
+                AM
               </div>
               <div className="ml-3">
-                <p className="font-medium">Jamie Smith</p>
-                <p className="text-sm text-white/80">
-                  California, Software Developer
-                </p>
+                <p className="font-medium">Alex Morgan</p>
+                <p className="text-sm text-white/80">New York, Developer</p>
               </div>
             </div>
           </div>
@@ -67,14 +65,14 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           <div className="mb-10 text-center">
             <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
-              Welcome back
+              Create your account
             </h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Sign in to your account or create a new one
+              Join thousands of users building amazing applications
             </p>
           </div>
 
-          <form className="space-y-6" id="auth-form">
+          <form className="space-y-6" id="signup-form">
             {/* Display form errors */}
             <div
               id="form-error"
@@ -104,25 +102,17 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <div className="mb-1 flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Password
-                </label>
-                <Link
-                  href="/forgot-password"
-                  className="text-sm text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
+              <label
+                htmlFor="password"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Password
+              </label>
               <input
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete="new-password"
                 required
                 className="block w-full appearance-none rounded-lg border border-gray-300 px-3 py-3 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                 placeholder="••••••••"
@@ -131,6 +121,10 @@ export default function LoginPage() {
                 id="password-error"
                 className="mt-1 hidden text-sm text-red-600 dark:text-red-400"
               ></div>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                Password must be at least 8 characters and include both letters
+                and numbers
+              </p>
             </div>
 
             {/* Success message for signup */}
@@ -141,19 +135,10 @@ export default function LoginPage() {
 
             <div>
               <button
-                formAction={login}
+                formAction={signup}
                 className="flex w-full justify-center rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
               >
-                Sign in
-              </button>
-            </div>
-
-            <div>
-              <button
-                formAction={signup}
-                className="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-              >
-                Create new account
+                Create Account
               </button>
             </div>
           </form>
@@ -162,24 +147,13 @@ export default function LoginPage() {
             dangerouslySetInnerHTML={{
               __html: `
             document.addEventListener('DOMContentLoaded', () => {
-              // Handle form submissions with client-side error handling
-              const form = document.getElementById('auth-form');
+              const form = document.getElementById('signup-form');
               const formError = document.getElementById('form-error');
               const emailError = document.getElementById('email-error');
               const passwordError = document.getElementById('password-error');
               const successMessage = document.getElementById('success-message');
               
               if (form) {
-                // Check for URL parameters
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('reset') === 'success') {
-                  formError.textContent = "Your password has been reset successfully. You can now log in.";
-                  formError.classList.remove('hidden', 'bg-red-50', 'text-red-600');
-                  formError.classList.add('bg-green-50', 'text-green-600');
-                  formError.classList.remove('hidden');
-                }
-                
-                // Add error handling
                 form.addEventListener('submit', async (e) => {
                   // Reset previous errors
                   formError.classList.add('hidden');
@@ -255,7 +229,19 @@ export default function LoginPage() {
 
           <div className="mt-8 text-center">
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              By signing in, you agree to our{' '}
+              Already have an account?{' '}
+              <Link
+                href="/login"
+                className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+              >
+                Sign in
+              </Link>
+            </p>
+          </div>
+
+          <div className="mt-4 text-center">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              By creating an account, you agree to our{' '}
               <Link
                 href="/terms"
                 className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
