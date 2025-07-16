@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function MarketingLayout({
   children,
@@ -18,12 +18,12 @@ export default function MarketingLayout({
   // Handle system preference and localStorage for dark mode
   useEffect(() => {
     // Check localStorage first, then system preference
-    const storedTheme = localStorage.getItem("theme");
+    const storedTheme = localStorage.getItem('theme');
     if (storedTheme) {
-      setDarkMode(storedTheme === "dark");
+      setDarkMode(storedTheme === 'dark');
     } else {
       const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        '(prefers-color-scheme: dark)'
       ).matches;
       setDarkMode(prefersDark);
     }
@@ -37,18 +37,18 @@ export default function MarketingLayout({
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Apply dark mode to document and localStorage
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [darkMode]);
 
@@ -58,11 +58,11 @@ export default function MarketingLayout({
   }, [pathname]);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Courses", href: "/courses" },
-    { name: "About", href: "/about" },
-    { name: "FAQ", href: "/faq" },
-    { name: "Contact", href: "/contact" },
+    { name: 'Home', href: '/' },
+    { name: 'Features', href: '/features' },
+    { name: 'About', href: '/about' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const isActive = (path: string) => pathname === path;
@@ -71,13 +71,13 @@ export default function MarketingLayout({
     <>
       {/* Navigation */}
       <header
-        className={`fixed w-full z-50 transition-all duration-300 ${
+        className={`fixed z-50 w-full transition-all duration-300 ${
           isScrolled
-            ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg py-3"
-            : "bg-transparent py-5"
+            ? 'bg-white/95 py-3 shadow-lg backdrop-blur-md dark:bg-gray-900/95'
+            : 'bg-transparent py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between">
             {/* Logo */}
             <motion.div
@@ -87,20 +87,17 @@ export default function MarketingLayout({
               transition={{ duration: 0.5 }}
             >
               <Link href="/" className="flex items-center">
-                <div className="relative h-12 w-12 mr-3">
-                  <div className="absolute inset-0 bg-blue-600 dark:bg-blue-500 rounded-xl transform rotate-6 transition-all duration-300"></div>
-                  <div className="absolute inset-0 bg-white dark:bg-gray-800 rounded-lg border-2 border-blue-600 dark:border-blue-500 flex items-center justify-center transition-all duration-300">
-                    <span className="text-blue-600 dark:text-blue-400 font-bold text-xl">
-                      BS
+                <div className="relative mr-3 h-12 w-12">
+                  <div className="absolute inset-0 rotate-6 transform rounded-xl bg-blue-600 transition-all duration-300 dark:bg-blue-500"></div>
+                  <div className="absolute inset-0 flex items-center justify-center rounded-lg border-2 border-blue-600 bg-white transition-all duration-300 dark:border-blue-500 dark:bg-gray-800">
+                    <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                      A
                     </span>
                   </div>
                 </div>
                 <div>
-                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 transition-all duration-300">
-                    BoatSafe
-                  </span>
-                  <span className="ml-1 text-lg font-bold text-blue-600 dark:text-blue-400 transition-all duration-300">
-                    AI
+                  <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-2xl font-bold text-transparent transition-all duration-300 dark:from-blue-400 dark:to-blue-300">
+                    Your App
                   </span>
                 </div>
               </Link>
@@ -117,16 +114,16 @@ export default function MarketingLayout({
                 >
                   <Link
                     href={link.href}
-                    className={`text-base font-medium transition-colors relative ${
+                    className={`relative text-base font-medium transition-colors ${
                       isActive(link.href)
-                        ? "text-blue-600 dark:text-blue-400"
-                        : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                        ? 'text-blue-600 dark:text-blue-400'
+                        : 'text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'
                     }`}
                   >
                     {link.name}
                     {isActive(link.href) && (
                       <motion.span
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400"
+                        className="absolute right-0 -bottom-1 left-0 h-0.5 bg-blue-600 dark:bg-blue-400"
                         layoutId="underline"
                       />
                     )}
@@ -139,7 +136,7 @@ export default function MarketingLayout({
             <div className="hidden md:flex md:items-center md:space-x-4">
               <motion.button
                 onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="rounded-full p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                 aria-label="Toggle dark mode"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -186,7 +183,7 @@ export default function MarketingLayout({
               >
                 <Link
                   href="/login"
-                  className="inline-flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="inline-flex items-center text-sm font-medium text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                 >
                   Log in
                 </Link>
@@ -200,7 +197,7 @@ export default function MarketingLayout({
               >
                 <Link
                   href="/signup"
-                  className="ml-4 inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-full text-white bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-600 shadow-md hover:shadow-lg transition-all duration-300"
+                  className="ml-4 inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-2.5 text-sm font-medium text-white shadow-md transition-all duration-300 hover:from-blue-500 hover:to-blue-600 hover:shadow-lg"
                 >
                   Get Started
                 </Link>
@@ -211,7 +208,7 @@ export default function MarketingLayout({
             <div className="flex items-center md:hidden">
               <motion.button
                 onClick={() => setDarkMode(!darkMode)}
-                className="p-2 mr-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="mr-2 rounded-full p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                 aria-label="Toggle dark mode"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -252,7 +249,7 @@ export default function MarketingLayout({
               </motion.button>
               <motion.button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Toggle mobile menu"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -302,35 +299,35 @@ export default function MarketingLayout({
             <motion.div
               className="md:hidden"
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
+              animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md">
-                {navLinks.map((link) => (
+              <div className="space-y-1 border-t border-gray-200 bg-white/95 px-2 pt-2 pb-3 backdrop-blur-md sm:px-3 dark:border-gray-700 dark:bg-gray-900/95">
+                {navLinks.map(link => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${
+                    className={`block rounded-md px-3 py-2 text-base font-medium ${
                       isActive(link.href)
-                        ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                        ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
+                        : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
                     } transition-colors`}
                   >
                     {link.name}
                   </Link>
                 ))}
-                <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
+                <div className="border-t border-gray-200 pt-4 pb-3 dark:border-gray-700">
                   <div className="flex items-center px-5">
                     <Link
                       href="/login"
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
                     >
                       Log in
                     </Link>
                     <Link
                       href="/signup"
-                      className="ml-4 block px-5 py-2.5 rounded-full text-base font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-600 shadow-md transition-all duration-300"
+                      className="ml-4 block rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-2.5 text-base font-medium text-white shadow-md transition-all duration-300 hover:from-blue-500 hover:to-blue-600"
                     >
                       Get Started
                     </Link>
@@ -346,37 +343,33 @@ export default function MarketingLayout({
       <main className="min-h-screen">{children}</main>
 
       {/* Footer */}
-      <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+      <footer className="border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
             <div className="col-span-2">
               <Link href="/" className="flex items-center">
-                <div className="relative h-12 w-12 mr-3">
-                  <div className="absolute inset-0 bg-blue-600 dark:bg-blue-500 rounded-xl transform rotate-6"></div>
-                  <div className="absolute inset-0 bg-white dark:bg-gray-800 rounded-lg border-2 border-blue-600 dark:border-blue-500 flex items-center justify-center">
-                    <span className="text-blue-600 dark:text-blue-400 font-bold text-xl">
-                      BS
+                <div className="relative mr-3 h-12 w-12">
+                  <div className="absolute inset-0 rotate-6 transform rounded-xl bg-blue-600 dark:bg-blue-500"></div>
+                  <div className="absolute inset-0 flex items-center justify-center rounded-lg border-2 border-blue-600 bg-white dark:border-blue-500 dark:bg-gray-800">
+                    <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                      A
                     </span>
                   </div>
                 </div>
                 <div>
-                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300">
-                    BoatSafe
-                  </span>
-                  <span className="ml-1 text-lg font-bold text-blue-600 dark:text-blue-400">
-                    AI
+                  <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-2xl font-bold text-transparent dark:from-blue-400 dark:to-blue-300">
+                    Your App
                   </span>
                 </div>
               </Link>
-              <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xs">
-                The first boating education platform powered by AI narration and
-                personalized instruction. Learn at your pace, on any device,
-                with expert guidance.
+              <p className="mt-4 max-w-xs text-gray-600 dark:text-gray-400">
+                The modern platform powered by AI intelligence and personalized
+                tools. Build at your pace, on any device, with expert guidance.
               </p>
-              <div className="flex space-x-6 mt-6">
+              <div className="mt-6 flex space-x-6">
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                  className="text-gray-400 transition-colors hover:text-gray-500 dark:hover:text-gray-300"
                 >
                   <span className="sr-only">Facebook</span>
                   <svg
@@ -394,7 +387,7 @@ export default function MarketingLayout({
                 </a>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                  className="text-gray-400 transition-colors hover:text-gray-500 dark:hover:text-gray-300"
                 >
                   <span className="sr-only">Instagram</span>
                   <svg
@@ -412,7 +405,7 @@ export default function MarketingLayout({
                 </a>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                  className="text-gray-400 transition-colors hover:text-gray-500 dark:hover:text-gray-300"
                 >
                   <span className="sr-only">Twitter</span>
                   <svg
@@ -426,7 +419,7 @@ export default function MarketingLayout({
                 </a>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                  className="text-gray-400 transition-colors hover:text-gray-500 dark:hover:text-gray-300"
                 >
                   <span className="sr-only">YouTube</span>
                   <svg
@@ -445,38 +438,38 @@ export default function MarketingLayout({
               </div>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Courses
+              <h3 className="text-sm font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                Features
               </h3>
               <ul className="mt-4 space-y-4">
                 <li>
                   <Link
-                    href="/courses/basic"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    href="/features/dashboard"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
-                    Basic Boating
+                    AI Dashboard
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/courses/advanced"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    href="/features/automation"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
-                    Advanced Navigation
+                    Smart Automation
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/courses/coastal"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    href="/features/analytics"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
-                    Coastal Navigation
+                    Advanced Analytics
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/courses/pricing"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    href="/pricing"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
                     Pricing
                   </Link>
@@ -484,38 +477,38 @@ export default function MarketingLayout({
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <h3 className="text-sm font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
                 Resources
               </h3>
               <ul className="mt-4 space-y-4">
                 <li>
                   <Link
                     href="/blog"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
-                    Boating Blog
+                    Developer Blog
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/faq"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
                     FAQ
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/laws"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    href="/docs"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
-                    State Laws
+                    Documentation
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/resources"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
                     Free Resources
                   </Link>
@@ -523,14 +516,14 @@ export default function MarketingLayout({
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <h3 className="text-sm font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
                 Company
               </h3>
               <ul className="mt-4 space-y-4">
                 <li>
                   <Link
                     href="/about"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
                     About Us
                   </Link>
@@ -538,7 +531,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/contact"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
                     Contact
                   </Link>
@@ -546,7 +539,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/careers"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
                     Careers
                   </Link>
@@ -554,7 +547,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/partners"
-                    className="text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-base text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                   >
                     Partners
                   </Link>
@@ -562,26 +555,26 @@ export default function MarketingLayout({
               </ul>
             </div>
           </div>
-          <div className="mt-12 border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="mt-12 flex flex-col items-center justify-between border-t border-gray-200 pt-8 md:flex-row dark:border-gray-800">
             <p className="text-base text-gray-500 dark:text-gray-400">
-              © {new Date().getFullYear()} BoatSafe AI. All rights reserved.
+              © {new Date().getFullYear()} Your App. All rights reserved.
             </p>
-            <div className="mt-4 md:mt-0 flex flex-wrap gap-6">
+            <div className="mt-4 flex flex-wrap gap-6 md:mt-0">
               <Link
                 href="/privacy"
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
               >
                 Terms of Service
               </Link>
               <Link
                 href="/cookies"
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
               >
                 Cookie Policy
               </Link>
